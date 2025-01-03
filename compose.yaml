@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: backend
+      target: main
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: .
+        target: /var/git
+      - type: bind
+        source: ./backend
+        target: /app

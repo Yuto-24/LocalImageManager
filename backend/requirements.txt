@@ -1,0 +1,30 @@
+# AI/LLM
+openai
+langchain >= 0.3.0
+
+# Developing
+tqdm
+loguru
+pylint
+pytest
+autopep8
+jupyter
+notebook
+jupyterlab
+jupyterlab-indent-guides
+jupyterlab-miami-nights
+JLDracula
+
+# DataManagement
+matplotlib
+japanize-matplotlib
+
+# Image Edit
+opencv-python
+pyheif
+pillow
+piexif
+
+# FastAPI
+uvicorn
+fastapi

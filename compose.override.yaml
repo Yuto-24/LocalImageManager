@@ -1,0 +1,16 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      args:
+        IMAGE_PYTHON_VER: 3.11.11
+        WORKDIR: /app
+    ports:
+      - 28888:8888
+      - 28000:8000
+    volumes:
+      - ./.config/.jupyter:/root/.jupyter
+      - ./.config/.vscode-server:/root/.vscode-server
+      - ~/.ssh:/root/.ssh
+    # command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=${JUPYTER_TOKEN} --NotebookApp.notebook_dir=/app
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8000

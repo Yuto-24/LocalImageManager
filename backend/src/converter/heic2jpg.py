@@ -11,8 +11,9 @@ heic_converter.convert()
 ```
 """
 
+import re
 import os
-from os.path import join, isfile, isdir, basename
+from os.path import join, isfile, isdir
 import time
 import shutil
 
@@ -65,7 +66,10 @@ class HeicConverter:
             ret_dict[heic_file_path] = {}
             ret_dict[heic_file_path]["moved_org"] = join(config.img_dir,
                                                          "HEIC",
-                                                         basename(heic_file_path),
+                                                         re.sub(pattern=config.img_dir + "/",
+                                                                repl="",
+                                                                string=heic_file_path,
+                                                                ),
                                                          )
             ret_dict[heic_file_path]["will_be_made"] = output_file_path
 
@@ -75,6 +79,8 @@ class HeicConverter:
         """
         Don't need any input
         All HEIC file is converted into jpg
+
+        TODO: use self.find_convert_list
         """
         start_time = time.time()
         for heic_file_path in tqdm(self.heic_path_list):

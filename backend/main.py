@@ -1,10 +1,9 @@
+""" This is FastAPI default script. """
+
 from fastapi import FastAPI
-# CORSエラー回避の為追加
 from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
-# CORSを回避するために追加
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,5 +14,6 @@ app.add_middleware(
 
 
 @app.get("/")
-async def hello():
+async def default():
+    """ Just return constant messages """
     return {"message": "It's Work :)"}
